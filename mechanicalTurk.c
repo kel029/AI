@@ -45,7 +45,6 @@ action decideAction (Game g) {
 
             if (nextAction.actionCode == PASS) {
 
-                // test Spinoff
                 if ( TRUE ) {
                     
                     nextAction.actionCode = RETRAIN_STUDENTS;
@@ -108,18 +107,18 @@ static action checkLegal (int actionCode, Game g) {
     strcpy(tempAction.destination, tempPath);
 
     int legal = FALSE;
-    int index = 0;
+    int count = 0;
 
-    while ( index < strlen(PATH_SEQUENCE) && legal == FALSE) {
+    while ( count < strlen(PATH_SEQUENCE) && legal == FALSE) {
 
         legal = isLegalAction(g, tempAction);
 
         if (legal == FALSE) {
-            strncat( tempPath, pathSequence+index, 1 );
+            strncat( tempPath, pathSequence+count, 1 );
             strcpy(tempAction.destination, tempPath);
         }
 
-        index++;
+        count++;
     }
 
     if (legal == FALSE) {
